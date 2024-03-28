@@ -27,11 +27,13 @@ jobs:
       - uses: DeterminateSystems/nix-installer-action@main
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: DeterminateSystems/flake-checker-action@main
+        with:
+          flake-lock-path: ./notes/flake.lock
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4
       - name: Build with Emanote
-        run: cd notes && nix develop --command emanote gen ../build
+        run: cd notes && mkdir ../build && nix develop --command emanote gen ../build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
