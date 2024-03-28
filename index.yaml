@@ -1,0 +1,4 @@
+page:
+  headHtml: |
+    <snippet var="js.katex" />
+
