@@ -1,4 +1,4 @@
-# gjz010的笔记
+# 首页
 
 Powered by [zk](https://github.com/zk-org/zk) and [Emanote](https://github.com/srid/emanote).
 

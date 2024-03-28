@@ -1,4 +1,7 @@
 page:
+  siteUrl: https://www.gjz010.com/
+  siteTitle: gjz010的笔记
   headHtml: |
     <snippet var="js.katex" />
+    <snippet var="js.highlightjs" />
 
