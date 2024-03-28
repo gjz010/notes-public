@@ -22,3 +22,6 @@ zk serve
 支持隐藏笔记，放在`private`目录下的笔记不会被同步到公开仓库。
 
 TODO：在同步时抹除指向`private`目录下笔记的引用。
+
+
+#meta #tutorial
