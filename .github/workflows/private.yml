@@ -1,0 +1,53 @@
+name: Private Repo CI Flow for creating public branch
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          path: private
+      - uses: actions/checkout@v3
+        with:
+          ref: public
+          path: public
+      - name: Create new commit
+        run: |
+          cd public
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git rm -r . || true
+          cd ..
+          rsync -lrv --exclude ".git/" --exclude "private/" $(find ./private -maxdepth 1 -maxdepth 1 -mindepth 1) ./public
+          cd public
+          git add . || true
+          git commit --allow-empty -m "Syncing blog for commit ${{ github.sha }}."
+      - name: Push to public branch
+        uses: ad-m/github-push-action@v0.6.0
+        with: 
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: public
+          directory: ./public
+      - name: Push to public repo
+        run: |
+          cd public
+          # Workaround for https://github.com/ad-m/github-push-action/issues/52
+          git config --local --get "http.https://github.com/.extraheader" > ../tmp-extra-header
+          git config --local --unset-all "http.https://github.com/.extraheader"
+          if git push https://oauth2:${{ secrets.NOTES_GITHUB_TOKEN_PUBLIC_REPO }}@github.com/${{ vars.NOTES_PUBLIC_REPOSITORY }}.git public ; then
+              echo "Shallow push success."
+          else
+              echo "Shallow push failed. Trying deep push."
+              git config --local --add "http.https://github.com/.extraheader" "$(cat ../tmp-extra-header)"
+              git fetch --unshallow
+              git config --local --unset-all "http.https://github.com/.extraheader"
+              git push https://oauth2:${{ secrets.NOTES_GITHUB_TOKEN_PUBLIC_REPO }}@github.com/${{ vars.NOTES_PUBLIC_REPOSITORY }}.git public
+          fi
