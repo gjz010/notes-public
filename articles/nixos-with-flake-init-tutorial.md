@@ -11,7 +11,7 @@
   - Filling in `system.configurationRevision`, enabling `nixos-version --configuration-revision`.
   - Unifying nixpkgs versions by Nix channel, by Flake registry, and the one used by current installation.
 
-## How to installing NixOS using nixos-with-flake-init?
+## How to install NixOS using nixos-with-flake-init?
 
 TL;DR: Follow the [official tutorial](https://nixos.org/manual/nixos/stable/#sec-installation-manual-summary) but replace the `nixos-generate-config` line with:
 

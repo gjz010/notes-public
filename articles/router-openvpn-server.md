@@ -108,7 +108,7 @@ You need to generate some client certificates according to [[tips/cfssl]].
 > [!warning]
 > One client certificate is required for **EVERY** client!
 
-### Linux + NetworkManager.
+### Linux + NetworkManager
 
 On NixOS the NetworkManager plugin is required:
 
