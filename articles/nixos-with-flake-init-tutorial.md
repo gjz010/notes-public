@@ -1,3 +1,7 @@
+---
+date: 2024-03-28
+---
+
 # Tutorial: github:gjz010/nix-channel\#nixos-with-flake-init
 
 `github:gjz010/nix-channel#nixos-with-flake-init` upgrades `nixos-generate-config` by generating a [Flake](https://nixos.wiki/wiki/Flakes) rather than just `configuration.nix`.

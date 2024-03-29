@@ -4,4 +4,7 @@ page:
   headHtml: |
     <snippet var="js.katex" />
     <snippet var="js.highlightjs" />
-
+date: 2024-03-28
+template:
+  # Which template to use to render notes. The filepath without the .tpl extension.
+  name: /templates/layouts/default

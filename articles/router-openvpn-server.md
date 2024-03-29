@@ -1,3 +1,7 @@
+---
+date: 2024-03-29
+---
+
 # Tutorial: Homebrew your own virtual private network on NixOS
 
 We will show how to homebrew your own virtual, private network using [OpenVPN](https://openvpn.net/) on NixOS.
