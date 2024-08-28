@@ -35,7 +35,7 @@ jobs:
       - name: Build with Emanote
         run: cd notes && mkdir ../build && nix develop --command emanote gen ../build
       - name: Release static files
-        run: cd nodes && cp -r ./static ../build
+        run: cd notes && cp -r ./static ../build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
