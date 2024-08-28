@@ -3,10 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    emanote.url = "github:srid/emanote";
+    emanote.url = "github:gjz010-Forks/emanote";
   };
 
-  outputs = { self, nixpkgs, emanote }: {
+  outputs = { self, nixpkgs, emanote, ... }: {
 
     packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
 
