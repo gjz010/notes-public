@@ -1,2 +1,3 @@
 .direnv
 .zk/notebook.db
+.build

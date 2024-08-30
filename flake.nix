@@ -12,7 +12,13 @@
 
     packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
     devShells.x86_64-linux.default = let pkgs = import nixpkgs { system = "x86_64-linux";}; in pkgs.mkShell {
-      nativeBuildInputs = with pkgs; [ zk fzf (emanote.packages.x86_64-linux.emanote)];
+      nativeBuildInputs = with pkgs; [
+        zk
+        fzf
+        (emanote.packages.x86_64-linux.emanote)
+        just
+        xournalpp
+      ];
     };
   };
 }

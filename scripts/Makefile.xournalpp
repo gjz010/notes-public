@@ -1,0 +1,13 @@
+BASEPATH := .
+SOURCES = $(wildcard $(BASEPATH)/*.xopp)
+TARGETS = $(patsubst $(BASEPATH)/%.xopp, $(BASEPATH)/pdf/%.pdf,$(SOURCES))
+
+all: $(TARGETS)
+$(BASEPATH)/pdf/%.pdf: $(BASEPATH)/%.xopp
+	xournalpp -p $@ $^
+.PHONY: all debug clean
+debug:
+	echo $(SOURCES)
+	echo $(TARGETS)
+clean:
+	rm -f $(TARGETS)

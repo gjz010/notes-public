@@ -33,9 +33,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
       - name: Build with Emanote
-        run: cd notes && mkdir ../build && nix develop --command emanote gen ../build
-      - name: Release static files
-        run: cd notes && cp -r ./static ../build
+        run: cd notes && just build-target=../build public-build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
