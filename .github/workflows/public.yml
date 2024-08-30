@@ -33,7 +33,7 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
       - name: Build with Emanote
-        run: cd notes && just build-target=../build public-build
+        run: cd notes && nix develop --command just build-target=../build public-build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
