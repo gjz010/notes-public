@@ -1,3 +1,5 @@
 .direnv
 .zk/notebook.db
 .build
+**/.*.autosave.xopp
+
