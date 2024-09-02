@@ -18,6 +18,7 @@
         (emanote.packages.x86_64-linux.emanote)
         just
         xournalpp
+        typst fish
       ];
     };
   };
