@@ -20,6 +20,7 @@ jobs:
           ref: public
           path: public
       - name: Create new commit
+        id: create_public_commit
         run: |
           cd public
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -29,14 +30,20 @@ jobs:
           rsync -lrv --exclude ".git/" --exclude "private/" $(find ./private -maxdepth 1 -maxdepth 1 -mindepth 1) ./public
           cd public
           git add . || true
-          git commit --allow-empty -m "Syncing blog for commit ${{ github.sha }}."
+          if git commit -m "Syncing blog for commit ${{ github.sha }}."; then
+            echo "public_push=true" >> $GITHUB_OUTPUT
+          else
+            echo "public_push=false" >> $GITHUB_OUTPUT
+          fi
       - name: Push to public branch
         uses: ad-m/github-push-action@v0.6.0
-        with: 
+        if: ${{ steps.create_public_commit.outputs.public_push == 'true' }}
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: public
           directory: ./public
       - name: Push to public repo
+        if: ${{ steps.create_public_commit.outputs.public_push == 'true' }}
         run: |
           cd public
           # Workaround for https://github.com/ad-m/github-push-action/issues/52
